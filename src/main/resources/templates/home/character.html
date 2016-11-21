@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Marvel - Dados de Acesso</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous" />
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+section {
+	padding-top: 1px;
+	min-height: 100px;
+	width: 920px;
+	margin: 20px auto;
+	float: none;
+	clear:both;
+}
+
+.img-principal {
+	float: left;
+	margin: 10px;
+	width: 200px;
+	height: 200px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.img-fasciculo {
+	float: left;
+	margin: 10px;
+	width: 150px;
+	height: 225px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+article {
+	float: left;
+	width: 600px;
+	margin-top: 10px;
+}
+
+div {
+	clear: both;
+}
+</style>
+</head>
+<body>
+	<section>
+		<aside class="img-principal">
+			<img
+				th:src="${character.thumbnail.path + '/standard_xlarge' + '.' + character.thumbnail.extension}" />
+		</aside>
+		<article>
+			<h2 th:text="${character.name}"></h2>
+		</article>
+		<article>
+			<p th:text="${character.description}" />
+		</article>
+		<button type="submit" onclick="goBack()" class="btn btn-primary">Voltar</button>
+		<div></div>
+	</section>
+
+	<h2 style="text-align: center">Fascículos</h2>
+	<hr />
+	<section th:each="comic : ${comic}">
+
+		<aside class="img-fasciculo">
+			<img
+				th:src="${comic.thumbnail.path + '/portrait_xlarge' + '.' + comic.thumbnail.extension}" />
+		</aside>
+
+		<article>
+			<strong>Tìtulo: </strong> <p th:text="${comic.title}" /> <strong>Número de capa:</strong> <p th:text="${comic.issueNumber}" />
+		</article>
+		<article th:text="${comic.description}"></article>
+	</section>
+
+	<script>
+		function goBack() {
+			window.history.back();
+		}
+	</script>
+</body>
+
+
+
+</html>
